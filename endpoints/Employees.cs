@@ -7,7 +7,7 @@ using NancyService.models;
 
 namespace NancyService.endpoints
 {
-tre   public class Employees : NancyModule
+   public class Employees : NancyModule
     {
         public Employees(EFDBContext db)
         {
