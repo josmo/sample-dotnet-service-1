@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
 using Nancy;
 using NancyService.contexts;
-using NancyService.models;
 
-namespace NancyService.endpoints
+namespace NancyService.modules
 {
    public class Employees : NancyModule
     {
@@ -15,6 +12,12 @@ namespace NancyService.endpoints
             {
                     var employes = db.Employees.ToList();
                     return Response.AsJson(employes);
+            });
+            
+            Get("/employees/{id}", args =>
+            {
+                var employee = db.Employees.First(emp => emp.Id == args.id);
+                return Response.AsJson(employee);
             });
         }
     }
