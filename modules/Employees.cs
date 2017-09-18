@@ -16,7 +16,8 @@ namespace NancyService.modules
             
             Get("/employees/{id}", args =>
             {
-                var employee = db.Employees.First(emp => emp.Id == args.id);
+                int empId = args.id;
+                var employee = db.Employees.First(emp => emp.Id == empId);
                 return Response.AsJson(employee);
             });
         }
