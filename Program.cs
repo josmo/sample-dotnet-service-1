@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using Nancy.Hosting.Self;
 
 namespace NancyService
@@ -11,7 +12,7 @@ namespace NancyService
             using (var nancyHost = new NancyHost(new Uri("http://localhost:8888/v1/")))
             {
                 nancyHost.Start();
-                Console.WriteLine("Nancy now listening - navigating to http://localhost:8888/v1/. Press enter to stop");
+                Console.WriteLine("Nancy now listening - navigating to http://localhost:8888/v1/.");
                 try
                 {
                     Process.Start("http://localhost:8888/v1/");
@@ -19,13 +20,15 @@ namespace NancyService
                 catch (Exception)
                 {
                 }
-                Console.ReadKey();
+       
+                
+
+//                Console.ReadKey();
+                Thread.Sleep(Timeout.Infinite);
             }
 
             Console.WriteLine("Stopped. Good bye!");
         }
-        
-
     }
-    
 }
+
