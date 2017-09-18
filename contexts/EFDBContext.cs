@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Nancy;
+using NancyService.models;
 
-namespace NancyService
+namespace NancyService.contexts
 {
-    public class DBContext : DbContext
+    public class EFDBContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //TODO: look at a better lib to use
             string host = Environment.GetEnvironmentVariable("SQL_HOST");
             string user = Environment.GetEnvironmentVariable("SQL_USER");
             string password = Environment.GetEnvironmentVariable("SQL_PASSWORD");
@@ -21,28 +21,4 @@ namespace NancyService
             modelBuilder.Entity<Employee>().ToTable("Employees");
         }
     }
-    public class EmployeeEndpoints : NancyModule
-    {
-        public EmployeeEndpoints()
-        {
-            Get("/employees", args =>
-            {
-                using (var db = new DBContext())
-                {
-                    var employes = db.Employees.ToList();
-                    return Response.AsJson(employes);
-                }
-            });
-        }
-    }
-
-    public class Employee
-    {
-        public string Name { get; set; }
-        public int id { get; set; }
-        public int Age { get; set; }
-        public string Status { get; set; }
-    }
-
 }
-

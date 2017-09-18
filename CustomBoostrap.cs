@@ -4,7 +4,7 @@ using Nancy.Diagnostics;
 
 namespace NancyService
 {
-    public class CustomerBoostrap : DefaultNancyBootstrapper
+    public class CustomBoostrap : DefaultNancyBootstrapper
     {
         public override void Configure(INancyEnvironment environment)
         {
