@@ -1,21 +1,21 @@
-* [![Build Status](https://drone.seattleslow.com/api/badges/josmo/sample-dotnet-service-1/status.svg)](https://drone.seattleslow.com/josmo/sample-dotnet-service-1)
+*[![Build Status](https://drone.seattleslow.com/api/badges/josmo/sample-dotnet-service-1/status.svg)](https://drone.seattleslow.com/josmo/sample-dotnet-service-1)
 
-#C# Template for services - 
+# C# Template for services - 
 
-##Tech to know about
+## Tech to know about
 
 * Nancy FX
 * .NET Core 2
 * Entity Framework - might switch for speed
 * Docker
 
-##Tools needed
+## Tools needed
 
 * Docker
 * Drone CLI
 
 
-##To get started
+## To get started
 
 ```sh
 drone exec
