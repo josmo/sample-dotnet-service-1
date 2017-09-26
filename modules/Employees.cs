@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Bogus;
+using Bogus.DataSets;
 using Nancy;
 using Nancy.ModelBinding;
 using NancyService.contexts;
@@ -40,6 +42,19 @@ namespace NancyService.modules
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return Response.AsJson(employee);
+            }));
+            
+            Get("/generate", LoggingWrapper.requestLog(this,args =>
+            {
+                
+                var testEmployees = new Faker<Employee>()
+                    .RuleFor(u => u.Name, f => f.Name.FullName(Name.Gender.Male))
+                    .RuleFor(u => u.Age, f => f.Random.Int(15, 60))
+                    .RuleFor(u => u.Status, f => f.Random.Word());
+                var employees = testEmployees.Generate(100000);
+                db.Employees.AddRange(employees);
+                db.SaveChanges();
+                return HttpStatusCode.OK;
             }));
         }
     }

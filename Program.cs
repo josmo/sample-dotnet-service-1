@@ -9,7 +9,11 @@ namespace NancyService
     {
         public static void Main(string[] args)
         {
-            using (var nancyHost = new NancyHost(new Uri("http://localhost:8888/v1/")))
+            var configuration = new HostConfiguration()
+            {
+                UrlReservations =  new UrlReservations() { CreateAutomatically = true }
+            };
+            using (var nancyHost = new NancyHost(configuration, new Uri("http://localhost:8888/v1/")))
             {
                 nancyHost.Start();
                 Console.WriteLine("Nancy now listening - navigating to http://localhost:8888/v1/.");
