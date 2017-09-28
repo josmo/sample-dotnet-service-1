@@ -7,6 +7,7 @@ namespace NancyService.contexts
     public class EFDBContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Analyst> Analysts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,9 +22,6 @@ namespace NancyService.contexts
            
             optionsBuilder.UseSqlServer(@"Server=" + host + ";Database=master;User Id="+ user +";Password=" + password);
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Employee>().ToTable("Employees");
-        }
+
     }
 }

@@ -44,7 +44,7 @@ namespace NancyService.modules
                 return Response.AsJson(employee);
             }));
             
-            Get("/generate", LoggingWrapper.requestLog(this,args =>
+            Get("/employees/seed", LoggingWrapper.requestLog(this,args =>
             {
                 
                 var testEmployees = new Faker<Employee>()
