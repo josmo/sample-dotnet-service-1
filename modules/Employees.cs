@@ -51,7 +51,7 @@ namespace NancyService.modules
                     .RuleFor(u => u.Name, f => f.Name.FullName(Name.Gender.Male))
                     .RuleFor(u => u.Age, f => f.Random.Int(15, 60))
                     .RuleFor(u => u.Status, f => f.Random.Word());
-                var employees = testEmployees.Generate(100000);
+                var employees = testEmployees.Generate(1000);
                 db.Employees.AddRange(employees);
                 db.SaveChanges();
                 return HttpStatusCode.OK;
